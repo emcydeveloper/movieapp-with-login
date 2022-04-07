@@ -8,6 +8,8 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 export default function DisplayMovies({ getmovieinfo }) {
+  const history = useHistory();
+  
   const { id, moviename, img, rating, like, dislike, about } =
     getmovieinfo;
 //trailer
@@ -16,18 +18,18 @@ export default function DisplayMovies({ getmovieinfo }) {
   const ratingStyles = { color: rating < 8 ? "red" : "green" };
   const showSummaryStyle = { display: visible ? "block" : "none" };
 
-  const history = useHistory();
+  
 
   return (
     <div className="">
-      {/* <h3>{id}</h3>
-      <h3>{moviename}</h3>
-      <h3>{img}</h3>
-      <h3>{rating}</h3>
-      <h3>{like}</h3>
-      <h3>{dislike}</h3>
-      <h3>{about}</h3>
-      <h3>{trailer}</h3> */}
+      {/* <h2>{id}</h2>
+      <h2>{moviename}</h2>
+      <h2>{img}</h2>
+      <h2>{rating}</h2>
+      <h2>{like}</h2>
+      <h2>{dislike}</h2>
+      <h2>{about}</h2>
+      <h2>{trailer}</h2> */}
 
       <Card className="displaymovies-card">
         <CardContent>
@@ -40,15 +42,15 @@ export default function DisplayMovies({ getmovieinfo }) {
           </div>
           {/* <hr></hr> */}
           <section className="movie-section">
-            <h3 className="movie-name">
+            <h2 className="movie-name">
               {moviename}
               <IconButton onClick={() => setVisible(!visible)}>
                 {visible ? <ExpandLessIcon /> : <ExpandMoreIcon />}
               </IconButton>
-              <IconButton onClick={() => history.push("/movie/edit/" + id)}>
+              <IconButton onClick={() => history.push("/edit/" + id)}>
                 Edit
               </IconButton>
-            </h3>
+            </h2>
 
             <p className="movie-rating" style={ratingStyles}>
               ⭐ {rating}

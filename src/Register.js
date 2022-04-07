@@ -29,22 +29,22 @@ export default function Register() {
   }
 
   function handleSubmit(event) {
-    //   fetch('http://localhost:5000/signup', {
-    //   method: 'POST', // or 'PUT'
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(formData),
-    // })
-    // .then(response => response.json())
-    // .then(data => {
-    //   console.log('Success:', data);
-    //   alert('Success');
-    // })
-    // .catch((error) => {
-    //   console.error('Error:', error);
-    //   alert('Error');
-    // });
+      fetch('https://movieapp-with-login.herokuapp.com/signup', {
+      method: 'POST', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success!! User added', data);
+      alert('Success!! User added');
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+      alert('Error');
+    });
     
     event.preventDefault();
   }
@@ -54,7 +54,7 @@ export default function Register() {
       <SignUpHeader />
       <div className="register-form">
       <h1>Register Page</h1>
-
+      <h3>Validation - In-Progress</h3>
       <form onSubmit={handleSubmit}> 
         <div>
           {/* <label htmlFor="firstname">First Name</label> */}

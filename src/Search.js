@@ -42,7 +42,7 @@ export default function Search() {
   return (
     <div className="search">
       <Header />
-      <h1>search</h1>
+      <h3>search - In-progress</h3>
       <input
         type="text"
         placeholder="Enter the Movie Name"

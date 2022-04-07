@@ -13,8 +13,10 @@ export default function AddMovie() {
 
   const [formData, setFormData] = useState({
     moviename: "",
-    img: "",
+    img: "https://www.eglsf.info/wp-content/uploads/image-missing.png",
     rating: "",
+    like:0,
+    dislike:0,
     about: "",
     trailer: "",
   });
@@ -31,22 +33,22 @@ export default function AddMovie() {
   }
 
   function handleSubmit(event) {
-    //   fetch('http://localhost:5000/signup', {
-    //   method: 'POST', // or 'PUT'
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(formData),
-    // })
-    // .then(response => response.json())
-    // .then(data => {
-    //   console.log('Success:', data);
-    //   alert('Success');
-    // })
-    // .catch((error) => {
-    //   console.error('Error:', error);
-    //   alert('Error');
-    // });
+      fetch('https://movieapp-with-login.herokuapp.com/addmovie', {
+      method: 'POST', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+      alert('Success!! Movie added');
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+      alert('Error');
+    });
 
     event.preventDefault();
   }

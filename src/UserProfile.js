@@ -50,7 +50,7 @@ export default function UserProfile(){
         <div className="register">
           <Header />
           <div className="register-form">
-          <h1>User profile Page</h1>
+          <h3>User profile Page - In-progress</h3>
     
           <form onSubmit={handleSubmit}> 
             <div>

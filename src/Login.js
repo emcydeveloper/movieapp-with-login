@@ -1,14 +1,12 @@
 import "./style.css";
 import SignUpHeader from "./SignUpHeader";
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 export default function Login() {
+  const history = useHistory();
 
-    const [formData, setFormData] = useState({
-        
-        username: "",
-        
-      });
+    const [formData, setFormData] = useState({username: "",});
 
 
     function handleChange(event) {
@@ -24,7 +22,7 @@ export default function Login() {
 
     function handleSubmit(event) {
  
-      
+      history.push("/home")
         event.preventDefault();
       }
 
@@ -32,7 +30,7 @@ export default function Login() {
     <div className="login">
       <SignUpHeader />
       <div className="login-form">
-        <h1>login Page</h1>
+        <h3>Login Page - In-Progress, you can directly login by clicking Login button</h3>
         <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor="username">UserName: </label>
