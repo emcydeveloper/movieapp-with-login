@@ -8,9 +8,9 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 export default function DisplayMovies({ getmovieinfo }) {
-  const { id, moviename, img, rating, like, dislike, about, trailer } =
+  const { id, moviename, img, rating, like, dislike, about } =
     getmovieinfo;
-
+//trailer
   const [visible, setVisible] = useState(false);
 
   const ratingStyles = { color: rating < 8 ? "red" : "green" };

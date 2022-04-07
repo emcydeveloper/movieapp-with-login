@@ -1,5 +1,4 @@
 // import { Switch, Route } from "react-router-dom";
-import AddMovie from "./AddMovie";
 import DisplayMovies from "./DisplayMovies";
 // import EditMovie from "./EditMovie";
 import Header from "./Header";
