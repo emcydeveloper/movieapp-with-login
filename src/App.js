@@ -21,6 +21,7 @@ function App() {
         <Route path="/add"><AddMovie /></Route>
         <Route path="/edit/:movieid"><EditMovie /></Route>
         <Route exact path="/userprofile"><UserProfile /></Route> 
+        <Route exact path="/"><Home /></Route>
         
       </Switch>
     </div>
