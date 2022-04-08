@@ -1,10 +1,11 @@
 import "./style.css";
 import { useState } from "react";
 import SignUpHeader from "./SignUpHeader";
+import { useHistory } from "react-router-dom";
 
 export default function Register() {
 
-
+  const history = useHistory();
   const [formData, setFormData] = useState({
     firstname: "",
     lastname: "",
@@ -19,7 +20,7 @@ export default function Register() {
 
   function handleChange(event) {
     const { name, value } = event.target;
-    console.log(name, value);
+    // console.log(name, value);
     setFormData((prevFormData) => {
       return {
         ...prevFormData,
@@ -41,6 +42,7 @@ export default function Register() {
       console.log('Success!! User added', data);
       alert('Success!! User added');
     })
+    .then(()=>history.push("/login"))
     .catch((error) => {
       console.error('Error:', error);
       alert('Error');
