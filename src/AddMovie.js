@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Header from "./Header";
+import { useHistory } from "react-router-dom";
 
 export default function AddMovie() {
   //          <h3>{id}</h3>
@@ -10,6 +11,7 @@ export default function AddMovie() {
   //   <h3>{dislike}</h3>
   //   <h3>{about}</h3>
   //   <h3>{trailer}</h3>
+  const history = useHistory();
 
   const [formData, setFormData] = useState({
     moviename: "",
@@ -23,7 +25,7 @@ export default function AddMovie() {
 
   function handleChange(event) {
     const { name, value } = event.target;
-    console.log(name, value);
+    // console.log(name, value);
     setFormData((prevFormData) => {
       return {
         ...prevFormData,
@@ -45,6 +47,7 @@ export default function AddMovie() {
       console.log('Success:', data);
       alert('Success!! Movie added');
     })
+    .then(()=>history.push("/home"))
     .catch((error) => {
       console.error('Error:', error);
       alert('Error');

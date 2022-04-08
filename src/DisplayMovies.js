@@ -12,13 +12,15 @@ export default function DisplayMovies({ getmovieinfo }) {
   
   const { id, moviename, img, rating, like, dislike, about } =
     getmovieinfo;
-//trailer
+
   const [visible, setVisible] = useState(false);
 
   const ratingStyles = { color: rating < 8 ? "red" : "green" };
   const showSummaryStyle = { display: visible ? "block" : "none" };
 
-  
+  function handleDelete(){
+
+  }
 
   return (
     <div className="">
@@ -36,7 +38,7 @@ export default function DisplayMovies({ getmovieinfo }) {
           <img className="movie-poster" src={img} alt={moviename}></img>
           <div className="like-edit">
             <div>
-              <Counter sendLike={like} sendDislike={dislike}/>
+              <Counter sendLike={like} sendDislike={dislike} id={id}/>
             </div>
             {/* {deleteBtn} */}
           </div>
@@ -44,12 +46,17 @@ export default function DisplayMovies({ getmovieinfo }) {
           <section className="movie-section">
             <h2 className="movie-name">
               {moviename}
+              <div>
               <IconButton onClick={() => setVisible(!visible)}>
                 {visible ? <ExpandLessIcon /> : <ExpandMoreIcon />}
               </IconButton>
               <IconButton onClick={() => history.push("/edit/" + id)}>
                 Edit
               </IconButton>
+              <IconButton onClick={handleDelete}>
+                Delete
+              </IconButton>
+              </div>
             </h2>
 
             <p className="movie-rating" style={ratingStyles}>

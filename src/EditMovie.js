@@ -1,15 +1,17 @@
 import Header from "./Header";
-import { useParams } from "react-router-dom";
+import { useParams,useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 export default function EditMovie() {
+  const history = useHistory();
   const { movieid } = useParams();
+
   const [formData, setFormData] = useState({
     moviename:"",
     img:"",
     rating:0,
     about:"",
-    trailer:"",
+    trailer:""
   });
 
   let movieFetch = ()=>{fetch(`https://movieapp-with-login.herokuapp.com/getmovie/${movieid}`,{method:"get",}).then((movieData)=>movieData.json()).then((moviesList)=>setFormData(moviesList))}
@@ -21,7 +23,7 @@ useEffect(movieFetch,[])
 
   function handleChange(event) {
     const { name, value } = event.target;
-    console.log(name, value);
+    // console.log(name, value);
     setFormData((prevFormData) => {
       return {
         ...prevFormData,
@@ -31,24 +33,28 @@ useEffect(movieFetch,[])
   }
 
   function handleSubmit(event) {
-    //   fetch(`https://movieapp-with-login.herokuapp.com/editmovie/${movieid}`, {
-    //   method: 'PUT', // or 'PUT'
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(formData),
-    // })
-    // .then(response => response.json())
-    // .then(data => {
-    //   console.log('Success:', data);
-    //   alert('Success');
-    // })
-    // .catch((error) => {
-    //   console.error('Error:', error);
-    //   alert('Error');
-    // });
-    console.log("Temporary disabled");
-    alert("Temporary disabled")
+    delete formData["_id"]
+    // console.log(JSON.stringify(formData))
+      fetch(`https://movieapp-with-login.herokuapp.com/editmovie/${movieid}`, {
+      method: 'PUT', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+      alert('Save Successfull');
+    })
+    .then(()=>history.push("/home"))
+    .catch((error) => {
+      console.error('Error:', error);
+      alert('Error');
+    });
+    // console.log("Temporary disabled");
+    // alert("Temporary disabled")
+    
     event.preventDefault();
   }
   

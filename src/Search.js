@@ -1,56 +1,66 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import DisplayMovies from "./DisplayMovies";
 import Header from "./Header";
 
 export default function Search() {
-  const [formData, setFormData] = useState({
-    id: 0,
-    moviename: "",
-  });
+  const [input, setInput] = useState("");
+  const [movies, setMovies] = useState([]);
+  const [movie, setMovie] = useState([]);
+
+  let movieFetch = () => {
+    fetch("https://movieapp-with-login.herokuapp.com/getmovies", {
+      method: "get",
+    })
+      .then((movieData) => movieData.json())
+      .then((moviesList) => setMovies(moviesList))
+      .then(console.log("Search page loaded with movie list"));
+  };
+
+  useEffect(movieFetch, []);
 
   function handleChange(event) {
-    const { name, value } = event.target;
-    console.log(name, value);
-    setFormData((prevFormData) => {
-      return {
-        ...prevFormData,
-        [name]: value,
-      };
+    setInput(event.target.value);
+    setMovie([]);
+
+    if (input.length > 2) {
+      movies.filter(function (mv) {
+        mv.moviename = mv.moviename.toLowerCase();
+        return (
+          mv.moviename.indexOf(input.toLowerCase()) > -1 &&
+          setMovie((previousState) => [...previousState, mv])
+        );
+      });
+    } else {
+      setMovie([]);
+    }
+  }
+
+  function handleSearch() {
+    setMovie([]);
+    movies.filter((mv) => {
+      return (
+        mv.moviename.toLowerCase() === input.toLowerCase() &&
+        setMovie((previousState) => [...previousState, mv])
+      );
     });
   }
 
-  function handleSearch(event) {
-    //   fetch('http://localhost:5000/signup', {
-    //   method: 'POST', // or 'PUT'
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(formData),
-    // })
-    // .then(response => response.json())
-    // .then(data => {
-    //   console.log('Success:', data);
-    //   alert('Success');
-    // })
-    // .catch((error) => {
-    //   console.error('Error:', error);
-    //   alert('Error');
-    // });
-
-    event.preventDefault();
-  }
+  let getMovies = movie.map((movie, i) => {
+    return <DisplayMovies key={i} getmovieinfo={movie} />;
+  });
 
   return (
     <div className="search">
       <Header />
-      <h3>search - In-progress</h3>
       <input
         type="text"
         placeholder="Enter the Movie Name"
         onChange={handleChange}
         name="moviename"
-        value={formData.moviename}
+        value={input}
       />
       <button onClick={handleSearch}>Search</button>
+      <div className="home-displaymovies">{getMovies}</div>
     </div>
   );
 }

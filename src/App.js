@@ -8,7 +8,7 @@ import UserProfile from "./UserProfile";
 import EditMovie from "./EditMovie";
 
 
-function App() {
+function App(props) {
   return (
     <div className="App">
       {/* <Register /> */}
@@ -22,8 +22,8 @@ function App() {
         <Route path="/add"><AddMovie /></Route>
         <Route exact path="/userprofile"><UserProfile /></Route> 
         <Route exact path="/"><Register /></Route>
-        
       </Switch>
+
     </div>
   );
 }
