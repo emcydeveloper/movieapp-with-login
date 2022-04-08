@@ -18,6 +18,7 @@ export default function EditMovie() {
 
   // console.log(formData);
 
+// eslint-disable-next-line react-hooks/exhaustive-deps
 useEffect(movieFetch,[])
 
 
