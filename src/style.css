@@ -3,10 +3,10 @@
   margin-right: auto;
   margin-top: 60px;
   width: max-content;
-  background-color: bisque;
+  /* background-color: bisque; */
 }
 
-.register-form > h1 {
+/* .register-form > h1 {
   text-align: center;
   margin-top: 15px;
   margin-bottom: 0px;
@@ -32,7 +32,7 @@
 
 .register-form > form > div > input {
   margin: 20px;
-}
+} */
 .form-textarea {
   padding: 0px;
   margin: 0px;

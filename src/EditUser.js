@@ -2,6 +2,8 @@ import "./style.css";
 import { useEffect, useState } from "react";
 import { useHistory,useParams } from "react-router-dom";
 import Header from "./Header";
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
 export default function EditUser(){
     const { userid } = useParams();
@@ -75,95 +77,25 @@ export default function EditUser(){
     return(
         <div className="useredit">
             <Header />
-            
-            <form onSubmit={handleSubmit}> 
-        <div>
-          <label htmlFor="firstname">First Name</label>
-          <input
-            type="text"
-            placeholder="First Name"
-            onChange={handleChange}
-            name="firstname"
-            value={userData.firstname}
-          />
-          <label htmlFor="lastname">Last Name</label>
-          <input
-            type="text"
-            placeholder="Last Name"
-            onChange={handleChange}
-            name="lastname"
-            value={userData.lastname}
-          />
-        </div>
-        <div>
-          <label htmlFor="username">User Name</label>
-          <input
-            type="text"
-            placeholder="User Name"
-            onChange={handleChange}
-            name="username"
-            value={userData.username}
-          />
-
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            placeholder="Email"
-            onChange={handleChange}
-            name="email"
-            value={userData.email}
-          />
-        </div>
-        <div>
-          <label htmlFor="mobile">Mobile no.</label>
-          <input
-            type="tel"
-            placeholder="Mobile"
-            onChange={handleChange}
-            name="mobile"
-            value={userData.mobile}
-          />
-
-          <label htmlFor="country">Country</label>
-          <input
-            type="text"
-            placeholder="Country"
-            onChange={handleChange}
-            name="country"
-            value={userData.country}
-          />
-        </div>
-        <div>
-          <label htmlFor="city">City</label>
-          <input
-            type="text"
-            placeholder="City"
-            onChange={handleChange}
-            name="city"
-            value={userData.city}
-          />
-
-          <label htmlFor="state">State</label>
-          <input
-            type="text"
-            placeholder="State"
-            onChange={handleChange}
-            name="state"
-            value={userData.state}
-          />
-        </div>
-        <label htmlFor="comments">Comments</label>
-        <div className="form-comments">
-          <textarea className="form-textarea"
-            value={userData.comments}
-            placeholder="Comments"
-            onChange={handleChange}
-            name="comments"
-          />
-        </div>
-        <button>Save</button>
-      </form>
-      <button className="useredit-delbtn" onClick={handleDelete}>Delete</button>
+            <div className="register-form" >
+      <form onSubmit={handleSubmit}>
+      <Box component="form" sx={{'& .MuiTextField-root': { m: 1, width: '50ch',display: 'flex', flexWrap: 'wrap'  },}} noValidate autoComplete="off">
+      <div>
+        <TextField required id="firstname" label="First Name" value={userData.firstname} name="firstname" onChange={handleChange} />
+        <TextField required id="lastname" label="Last Name" value={userData.lastname} name="lastname" onChange={handleChange} />
+        <TextField required id="username" label="Username" value={userData.username} name="username" onChange={handleChange} />
+        <TextField disabled id="password" label="Password" />
+        <TextField required id="email" label="e-Mail" value={userData.email} name="email" onChange={handleChange} />
+        <TextField id="mobile" label="Mobile number" type="number" InputLabelProps={{ shrink: true, }} value={userData.mobile} name="mobile" onChange={handleChange} />
+        <TextField required id="city" label="City" value={userData.city} name="city" onChange={handleChange} />
+        <TextField required id="state" label="State" value={userData.state} name="state" onChange={handleChange} />
+        <TextField  id="comments" label="Comments" multiline rows={4} value={userData.comments} name="comments" onChange={handleChange}  />
+      </div>
+    </Box>
+    <button>Submit</button>
+    </form>
+    <button className="useredit-delbtn" onClick={handleDelete}>Delete</button>
+    </div>
       </div>
         
     )

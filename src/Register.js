@@ -2,9 +2,10 @@ import "./style.css";
 import { useState } from "react";
 import SignUpHeader from "./SignUpHeader";
 import { useHistory } from "react-router-dom";
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
 export default function Register() {
-
   const history = useHistory();
   const [formData, setFormData] = useState({
     firstname: "",
@@ -30,120 +31,50 @@ export default function Register() {
   }
 
   function handleSubmit(event) {
-      fetch('https://movieapp-with-login.herokuapp.com/signup', {
-      method: 'POST', // or 'PUT'
+    fetch("https://movieapp-with-login.herokuapp.com/signup", {
+      method: "POST", // or 'PUT'
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(formData),
     })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Success!! User added', data);
-      alert('Success!! User added');
-    })
-    .then(()=>history.push("/login"))
-    .catch((error) => {
-      console.error('Error:', error);
-      alert('Error');
-    });
-    
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success!! User added", data);
+        alert("Success!! User added");
+      })
+      .then(() => history.push("/login"))
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("Error");
+      });
+
     event.preventDefault();
   }
 
   return (
-    <div className="register">
+
+
+    <div className="register" >
       <SignUpHeader />
-      <div className="register-form">
-      <h1>Register Page</h1>
-      <form onSubmit={handleSubmit}> 
-        <div>
-          {/* <label htmlFor="firstname">First Name</label> */}
-          <input
-            type="text"
-            placeholder="First Name"
-            onChange={handleChange}
-            name="firstname"
-            value={formData.firstname}
-          />
-          {/* <label htmlFor="lastname">Last Name</label> */}
-          <input
-            type="text"
-            placeholder="Last Name"
-            onChange={handleChange}
-            name="lastname"
-            value={formData.lastname}
-          />
-        </div>
-        <div>
-          {/* <label htmlFor="username">User Name</label> */}
-          <input
-            type="text"
-            placeholder="User Name"
-            onChange={handleChange}
-            name="username"
-            value={formData.username}
-          />
-
-          {/* <label htmlFor="email">Email</label> */}
-          <input
-            type="email"
-            placeholder="Email"
-            onChange={handleChange}
-            name="email"
-            value={formData.email}
-          />
-        </div>
-        <div>
-          {/* <label htmlFor="mobile">Mobile no.</label> */}
-          <input
-            type="tel"
-            placeholder="Mobile"
-            onChange={handleChange}
-            name="mobile"
-            value={formData.mobile}
-          />
-
-          {/* <label htmlFor="country">Country</label> */}
-          <input
-            type="text"
-            placeholder="Country"
-            onChange={handleChange}
-            name="country"
-            value={formData.country}
-          />
-        </div>
-        <div>
-          {/* <label htmlFor="city">City</label> */}
-          <input
-            type="text"
-            placeholder="City"
-            onChange={handleChange}
-            name="city"
-            value={formData.city}
-          />
-
-          {/* <label htmlFor="state">State</label> */}
-          <input
-            type="text"
-            placeholder="State"
-            onChange={handleChange}
-            name="state"
-            value={formData.state}
-          />
-        </div>
-        {/* <label htmlFor="comments">Comments</label> */}
-        <div className="form-comments">
-          <textarea className="form-textarea"
-            value={formData.comments}
-            placeholder="Comments"
-            onChange={handleChange}
-            name="comments"
-          />
-        </div>
-        <button>Submit</button>
-      </form>
+      <div className="register-form" >
+      <form onSubmit={handleSubmit}>
+      <Box component="form" sx={{'& .MuiTextField-root': { m: 1, width: '50ch',display: 'flex', flexWrap: 'wrap'  },}} noValidate autoComplete="off">
+      <div>
+        <TextField required id="firstname" label="First Name" value={formData.firstname} name="firstname" onChange={handleChange} />
+        <TextField required id="lastname" label="Last Name" value={formData.lastname} name="lastname" onChange={handleChange} />
+        <TextField required id="username" label="Username" value={formData.username} name="username" onChange={handleChange} />
+        <TextField disabled id="password" label="Password" />
+        <TextField required id="email" label="e-Mail" value={formData.email} name="email" onChange={handleChange} />
+        <TextField id="mobile" label="Mobile number" type="number" InputLabelProps={{ shrink: true, }} value={formData.mobile} name="mobile" onChange={handleChange} />
+        <TextField required id="city" label="City" value={formData.city} name="city" onChange={handleChange} />
+        <TextField required id="state" label="State" value={formData.state} name="state" onChange={handleChange} />
+        <TextField  id="comments" label="Comments" multiline rows={4} value={formData.comments} name="comments" onChange={handleChange}  />
       </div>
+    </Box>
+    <button>Submit</button>
+    </form>
+    </div>
     </div>
   );
 }
