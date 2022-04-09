@@ -11,7 +11,7 @@ export default function Register() {
   const history = useHistory();
 
   const onSubmit = (event) => {
-    console.log(event);
+    
     fetch("https://movieapp-with-login.herokuapp.com/signup", {
       method: "POST", // or 'PUT'
       headers: {
@@ -43,8 +43,8 @@ export default function Register() {
       <Box component="form" sx={{'& .MuiTextField-root': { m: 1, width: '40ch',display: 'flex', flexWrap: 'wrap'  },}} noValidate autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
       <div>
 
-        <TextField id="firstname" placeholder="First Name *" name="firstname" {...register("firstName", {  required:true, minLength: 3 })}  />
-        {errors.firstName && <p>Required First Name with minimun 3 letters</p>}
+        <TextField id="firstname" placeholder="First Name *" name="firstname" {...register("firstname", {  required:true, minLength: 3 })}  />
+        {errors.firstname && <p>Required First Name with minimun 3 letters</p>}
          {/* value={formData.firstname} name="firstname"  onChange={handleChange}*/}
 
         <TextField id="lastname" placeholder="Last Name *" name="lastname" {...register("lastname", {  required:true, minLength: 3 })} />
@@ -55,7 +55,10 @@ export default function Register() {
 
         <TextField disabled id="password" placeholder="Password" />
 
-        <TextField id="email" placeholder="e-Mail *" name="email" {...register("email", {  required:true, minLength: 10 })} />
+        <TextField id="email" placeholder="e-Mail *" name="email" {...register("email", 
+                        { required: true,  
+                            pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ 
+                        })} />                        
         {errors.email && <p>Please enter the valid email address</p>}
 
         <TextField id="mobile" placeholder="Mobile number *" type="number" InputplaceholderProps={{ shrink: true, }} name="mobile" {...register("mobile", {  required:true, minLength:10, maxLength: 10 })} />

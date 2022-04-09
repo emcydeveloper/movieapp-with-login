@@ -20,7 +20,7 @@ export default function EditUser() {
     state: "",
     comments: "",
   });
-
+  
   let userFetch = () => {
     fetch(`https://movieapp-with-login.herokuapp.com/getuser/${userid}`, {
       method: "get",

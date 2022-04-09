@@ -63,8 +63,8 @@ export default function UserProfile() {
             <TableHead>
               <TableRow>
                 <TableCell>S.No</TableCell>
-                <TableCell align="right">FirstName</TableCell>
-                <TableCell align="right">Lastname</TableCell>
+                <TableCell align="right">First Name</TableCell>
+                <TableCell align="right">Last Name</TableCell>
                 <TableCell align="right">Username</TableCell>
                 <TableCell align="right">e-Mail</TableCell>
                 <TableCell align="right">Edit</TableCell>

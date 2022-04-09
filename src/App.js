@@ -23,7 +23,7 @@ function App(props) {
         <Route path="/search"><Search /></Route>
         <Route path="/add"><AddMovie /></Route>
         <Route exact path="/userprofile"><UserProfile /></Route> 
-        <Route exact path="/"><Register /></Route>
+        <Route exact path="/"><Login /></Route>
       </Switch>
 
     </div>

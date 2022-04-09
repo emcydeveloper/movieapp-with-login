@@ -17,6 +17,8 @@
   list-style: none;
   display: inline-block;
   margin: 10px;
+  margin-right: 20px;
+  font-size: x-large;
 }
 
 .login-form {
@@ -183,6 +185,7 @@ tr:hover {
   height: 50px;
   border-radius: 15px;
   margin-top: 5px;
+  font-size: x-large;
 
 }
 
@@ -199,6 +202,7 @@ tr:hover {
   height: 50px;
   border-radius: 15px;
   margin-top: 5px;
+  font-size: x-large;
 }
 
 .delete {
@@ -209,6 +213,7 @@ tr:hover {
   height: 50px;
   border-radius: 15px;
   margin-top: 5px;
+  font-size: x-large;
 }
 
 .cancel:hover {
