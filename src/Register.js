@@ -56,7 +56,6 @@ export default function Register() {
       <SignUpHeader />
       <div className="register-form">
       <h1>Register Page</h1>
-      <h3>Validation - In-Progress</h3>
       <form onSubmit={handleSubmit}> 
         <div>
           {/* <label htmlFor="firstname">First Name</label> */}

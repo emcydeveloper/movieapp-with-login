@@ -3,22 +3,14 @@ import Header from "./Header";
 import { useHistory } from "react-router-dom";
 
 export default function AddMovie() {
-  //          <h3>{id}</h3>
-  //   <h3>{moviename}</h3>
-  //   <h3>{img}</h3>
-  //   <h3>{rating}</h3>
-  //   <h3>{like}</h3>
-  //   <h3>{dislike}</h3>
-  //   <h3>{about}</h3>
-  //   <h3>{trailer}</h3>
   const history = useHistory();
 
   const [formData, setFormData] = useState({
     moviename: "",
     img: "https://www.eglsf.info/wp-content/uploads/image-missing.png",
     rating: "",
-    like:0,
-    dislike:0,
+    like: 0,
+    dislike: 0,
     about: "",
     trailer: "",
   });
@@ -35,23 +27,23 @@ export default function AddMovie() {
   }
 
   function handleSubmit(event) {
-      fetch('https://movieapp-with-login.herokuapp.com/addmovie', {
-      method: 'POST', // or 'PUT'
+    fetch("https://movieapp-with-login.herokuapp.com/addmovie", {
+      method: "POST", // or 'PUT'
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(formData),
     })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Success:', data);
-      alert('Success!! Movie added');
-    })
-    .then(()=>history.push("/home"))
-    .catch((error) => {
-      console.error('Error:', error);
-      alert('Error');
-    });
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+        alert("Success!! Movie added");
+      })
+      .then(() => history.push("/home"))
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("Error");
+      });
 
     event.preventDefault();
   }
@@ -60,15 +52,8 @@ export default function AddMovie() {
     <div className="addmovie">
       <Header />
       <h1>Add Movie</h1>
-
-      {/* moviename: "",
-        img: "",
-        rating: "",
-        about: "",
-        trailer: "", */}
-        <div className="addmovie-form">
-      <form onSubmit={handleSubmit}>
-        
+      <div className="addmovie-form">
+        <form onSubmit={handleSubmit}>
           {/* <label htmlFor="firstname">First Name</label> */}
           <input
             type="text"
@@ -85,8 +70,7 @@ export default function AddMovie() {
             name="img"
             value={formData.img}
           />
-     
-        
+
           {/* <label htmlFor="username">User Name</label> */}
           <input
             type="text"
@@ -104,8 +88,7 @@ export default function AddMovie() {
             name="about"
             value={formData.about}
           />
-      
-        
+
           {/* <label htmlFor="mobile">Mobile no.</label> */}
           <input
             type="url"
@@ -114,9 +97,9 @@ export default function AddMovie() {
             name="trailer"
             value={formData.trailer}
           />
-       
-        <button>Add</button>
-      </form>
+
+          <button>Add</button>
+        </form>
       </div>
     </div>
   );

@@ -1,145 +1,64 @@
-import { useState } from "react";
+import { IconButton } from "@mui/material";
+import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import Header from "./Header";
 
-export default function UserProfile(){
-    const [formData, setFormData] = useState({
-        firstname: "",
-        lastname: "",
-        username: "",
-        email: "",
-        mobile: "",
-        country: "",
-        city: "",
-        state: "",
-        comments: "",
-      });
-    
-      function handleChange(event) {
-        const { name, value } = event.target;
-        console.log(name, value);
-        setFormData((prevFormData) => {
-          return {
-            ...prevFormData,
-            [name]: value,
-          };
-        });
-      }
-    
-      function handleSubmit(event) {
-        //   fetch('http://localhost:5000/signup', {
-        //   method: 'POST', // or 'PUT'
-        //   headers: {
-        //     'Content-Type': 'application/json',
-        //   },
-        //   body: JSON.stringify(formData),
-        // })
-        // .then(response => response.json())
-        // .then(data => {
-        //   console.log('Success:', data);
-        //   alert('Success');
-        // })
-        // .catch((error) => {
-        //   console.error('Error:', error);
-        //   alert('Error');
-        // });
-        
-        event.preventDefault();
-      }
-    
-      return (
-        <div className="register">
-          <Header />
-          <div className="register-form">
-          <h3>User profile Page - In-progress</h3>
-    
-          <form onSubmit={handleSubmit}> 
-            <div>
-              {/* <label htmlFor="firstname">First Name</label> */}
-              <input
-                type="text"
-                placeholder="First Name"
-                onChange={handleChange}
-                name="firstname"
-                value={formData.firstname}
-              />
-              {/* <label htmlFor="lastname">Last Name</label> */}
-              <input
-                type="text"
-                placeholder="Last Name"
-                onChange={handleChange}
-                name="lastname"
-                value={formData.lastname}
-              />
-            </div>
-            <div>
-              {/* <label htmlFor="username">User Name</label> */}
-              <input
-                type="text"
-                placeholder="User Name"
-                onChange={handleChange}
-                name="username"
-                value={formData.username}
-              />
-    
-              {/* <label htmlFor="email">Email</label> */}
-              <input
-                type="email"
-                placeholder="Email"
-                onChange={handleChange}
-                name="email"
-                value={formData.email}
-              />
-            </div>
-            <div>
-              {/* <label htmlFor="mobile">Mobile no.</label> */}
-              <input
-                type="tel"
-                placeholder="Mobile"
-                onChange={handleChange}
-                name="mobile"
-                value={formData.mobile}
-              />
-    
-              {/* <label htmlFor="country">Country</label> */}
-              <input
-                type="text"
-                placeholder="Country"
-                onChange={handleChange}
-                name="country"
-                value={formData.country}
-              />
-            </div>
-            <div>
-              {/* <label htmlFor="city">City</label> */}
-              <input
-                type="text"
-                placeholder="City"
-                onChange={handleChange}
-                name="city"
-                value={formData.city}
-              />
-    
-              {/* <label htmlFor="state">State</label> */}
-              <input
-                type="text"
-                placeholder="State"
-                onChange={handleChange}
-                name="state"
-                value={formData.state}
-              />
-            </div>
-            {/* <label htmlFor="comments">Comments</label> */}
-            <div className="form-comments">
-              <textarea className="form-textarea"
-                value={formData.comments}
-                placeholder="Comments"
-                onChange={handleChange}
-                name="comments"
-              />
-            </div>
-            <button>Save</button>
-          </form>
-          </div>
-        </div>
-      );
+export default function UserProfile() {
+  const [users, setUsers] = useState([]);
+  const history = useHistory();
+
+  let userFetch = () => {
+    fetch(`https://movieapp-with-login.herokuapp.com/getusers`, {
+      method: "get",
+    })
+      .then((userData) => userData.json())
+      .then((userList) => setUsers(userList));
+  };
+
+  useEffect(userFetch, []);
+
+  let displayUsers = users.map((user, i) => {
+    let renderUser = (
+      <tr>
+        <td>{i + 1}</td> <td>{user.firstname}</td> <td>{user.lastname}</td>
+        <td>{user.username}</td> <td>{user.email}</td>
+        <td>
+          <IconButton onClick={() => history.push("useredit/" + user.id)}>
+            Edit
+          </IconButton>
+        </td>
+        <td>
+          <IconButton onClick={() => history.push("useredit/" + user.id)}>
+            Delete
+          </IconButton>
+        </td>
+      </tr>
+    );
+
+    return renderUser;
+  });
+
+  return (
+    <div className="userprofile">
+      <Header />
+      <div className="userprofile-content">
+        {/* firstName,lastname,username,email */}
+        <table className="userprofile-table">
+          <thead>
+            <tr>
+              <th>S.No</th>
+              <th>FirstName</th>
+              <th>Lastname</th>
+              <th>Username</th>
+              <th>e-Mail</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>{displayUsers}</tbody>
+        </table>
+        {/* {displayUsers} */}
+      </div>
+    </div>
+  );
 }

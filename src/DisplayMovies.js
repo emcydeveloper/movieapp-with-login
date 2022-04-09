@@ -9,36 +9,22 @@ import { useHistory } from "react-router-dom";
 
 export default function DisplayMovies({ getmovieinfo }) {
   const history = useHistory();
-  
-  const { id, moviename, img, rating, like, dislike, about } =
-    getmovieinfo;
+
+  const { id, moviename, img, rating, like, dislike, about } = getmovieinfo;
 
   const [visible, setVisible] = useState(false);
 
   const ratingStyles = { color: rating < 8 ? "red" : "green" };
   const showSummaryStyle = { display: visible ? "block" : "none" };
 
-  function handleDelete(){
-
-  }
-
   return (
     <div className="">
-      {/* <h2>{id}</h2>
-      <h2>{moviename}</h2>
-      <h2>{img}</h2>
-      <h2>{rating}</h2>
-      <h2>{like}</h2>
-      <h2>{dislike}</h2>
-      <h2>{about}</h2>
-      <h2>{trailer}</h2> */}
-
       <Card className="displaymovies-card">
         <CardContent>
           <img className="movie-poster" src={img} alt={moviename}></img>
           <div className="like-edit">
             <div>
-              <Counter sendLike={like} sendDislike={dislike} id={id}/>
+              <Counter sendLike={like} sendDislike={dislike} id={id} />
             </div>
             {/* {deleteBtn} */}
           </div>
@@ -47,15 +33,15 @@ export default function DisplayMovies({ getmovieinfo }) {
             <h2 className="movie-name">
               {moviename}
               <div>
-              <IconButton onClick={() => setVisible(!visible)}>
-                {visible ? <ExpandLessIcon /> : <ExpandMoreIcon />}
-              </IconButton>
-              <IconButton onClick={() => history.push("/edit/" + id)}>
-                Edit
-              </IconButton>
-              <IconButton onClick={handleDelete}>
-                Delete
-              </IconButton>
+                <IconButton onClick={() => setVisible(!visible)}>
+                  {visible ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                </IconButton>
+                <IconButton onClick={() => history.push("/edit/" + id)}>
+                  Edit
+                </IconButton>
+                <IconButton onClick={() => history.push("/edit/" + id)}>
+                  Delete
+                </IconButton>
               </div>
             </h2>
 
@@ -65,7 +51,6 @@ export default function DisplayMovies({ getmovieinfo }) {
           </section>
           {/* {<hr></hr>} */}
           <p style={showSummaryStyle} className="movie-summary">
-            
             {about}
           </p>
         </CardContent>
