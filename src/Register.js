@@ -4,6 +4,7 @@ import SignUpHeader from "./SignUpHeader";
 import { useHistory } from "react-router-dom";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 export default function Register() {
   const history = useHistory();
@@ -61,7 +62,7 @@ export default function Register() {
       
       <Box component="form" sx={{'& .MuiTextField-root': { m: 1, width: '40ch',display: 'flex', flexWrap: 'wrap'  },}} noValidate autoComplete="off" onSubmit={handleSubmit}>
       <div>
-        <TextField required id="fullWidth" label="First Name" value={formData.firstname} name="firstname" onChange={handleChange} />
+        <TextField fullWidth  required id="fullWidth" label="First Name" value={formData.firstname} name="firstname" onChange={handleChange} />
         <TextField required id="fullWidth" label="Last Name" value={formData.lastname} name="lastname" onChange={handleChange} />
         <TextField required id="username" label="Username" value={formData.username} name="username" onChange={handleChange} />
         <TextField disabled id="password" label="Password" />
@@ -71,11 +72,15 @@ export default function Register() {
         <TextField required id="state" label="State" value={formData.state} name="state" onChange={handleChange} />
         <TextField id="comments" label="Comments" multiline rows={4} value={formData.comments} name="comments" onChange={handleChange}  />
       </div>
-      <button>Submit</button>
+      
+      <div className="btn-container">
+          <button className="success">Signup</button>
+          </div>
     </Box>
     
     
     </div>
+
     </div>
   );
 }

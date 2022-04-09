@@ -1,6 +1,13 @@
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 import { IconButton } from "@mui/material";
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Header from "./Header";
@@ -21,20 +28,27 @@ export default function UserProfile() {
 
   let displayUsers = users.map((user, i) => {
     let renderUser = (
-      <tr>
-        <td>{i + 1}</td> <td>{user.firstname}</td> <td>{user.lastname}</td>
-        <td>{user.username}</td> <td>{user.email}</td>
-        <td>
+      <TableRow key={i}>
+        <TableCell>{i + 1}</TableCell>
+        <TableCell align="right">{user.firstname}</TableCell>
+        <TableCell align="right">{user.lastname}</TableCell>
+        <TableCell align="right">{user.username}</TableCell>
+        <TableCell align="right">{user.email}</TableCell>
+        <TableCell align="right">
+          {" "}
           <IconButton onClick={() => history.push("useredit/" + user.id)}>
-          <EditIcon />
+            {" "}
+            <EditIcon />{" "}
           </IconButton>
-        </td>
-        <td>
+        </TableCell>
+        <TableCell align="right">
+          {" "}
           <IconButton onClick={() => history.push("useredit/" + user.id)}>
-          <DeleteIcon />
-          </IconButton>
-        </td>
-      </tr>
+            {" "}
+            <DeleteIcon />{" "}
+          </IconButton>{" "}
+        </TableCell>
+      </TableRow>
     );
 
     return renderUser;
@@ -44,22 +58,22 @@ export default function UserProfile() {
     <div className="userprofile">
       <Header />
       <div className="userprofile-content">
-        {/* firstName,lastname,username,email */}
-        <table className="userprofile-table">
-          <thead>
-            <tr>
-              <th>S.No</th>
-              <th>FirstName</th>
-              <th>Lastname</th>
-              <th>Username</th>
-              <th>e-Mail</th>
-              <th>Edit</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
-          <tbody>{displayUsers}</tbody>
-        </table>
-        {/* {displayUsers} */}
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                <TableCell>S.No</TableCell>
+                <TableCell align="right">FirstName</TableCell>
+                <TableCell align="right">Lastname</TableCell>
+                <TableCell align="right">Username</TableCell>
+                <TableCell align="right">e-Mail</TableCell>
+                <TableCell align="right">Edit</TableCell>
+                <TableCell align="right">Delete</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>{displayUsers}</TableBody>
+          </Table>
+        </TableContainer>
       </div>
     </div>
   );

@@ -97,8 +97,9 @@ export default function AddMovie() {
             name="trailer"
             value={formData.trailer}
           />
-
-          <button>Add</button>
+          <div className="btn-container">
+          <button className="success">Save</button>
+          </div>
         </form>
       </div>
     </div>

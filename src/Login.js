@@ -1,4 +1,5 @@
 import "./style.css";
+import TextField from '@mui/material/TextField';
 import SignUpHeader from "./SignUpHeader";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
@@ -53,17 +54,12 @@ export default function Login() {
       <SignUpHeader />
       <div className="login-form">
         <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="username">UserName: </label>
-            <input
-              type="text"
-              placeholder="User Name"
-              onChange={handleChange}
-              name="username"
-              value={formData.username}
-            />
+          <div >
+          <TextField sx={{width: '40ch'}} id="username" label="User Name"  onChange={handleChange} name="username" value={formData.username}  />
           </div>
-          <button>Login</button>
+          <div className="btn-container">
+          <button className="success">Login</button>
+          </div>
         </form>
         {visible && <h1>Invalid username!!</h1>}
       </div>

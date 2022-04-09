@@ -22,8 +22,6 @@ export default function EditMovie() {
       .then((moviesList) => setFormData(moviesList));
   };
 
-  
-
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(movieFetch, []);
 
@@ -37,10 +35,13 @@ export default function EditMovie() {
     });
   }
 
-  function handleDelete(){
+  function handleDelete() {
     // console.log(movieid);
-    fetch(`https://movieapp-with-login.herokuapp.com/deletemovie/${movieid}`, { method: 'DELETE' })
-    .then(() => alert('Delete successful')).then(() => history.push("/home"));
+    fetch(`https://movieapp-with-login.herokuapp.com/deletemovie/${movieid}`, {
+      method: "DELETE",
+    })
+      .then(() => alert("Delete successful"))
+      .then(() => history.push("/home"));
   }
 
   function handleSubmit(event) {
@@ -118,10 +119,13 @@ export default function EditMovie() {
             value={formData.trailer}
           />
 
-          <button>Save</button>
-          
+          <div className="btn-container">
+            <button className="success">Save</button>
+          </div>
         </form>
-        <button className="editmovie-delbtn" onClick={handleDelete}>Delete</button>
+        <div className="btn-container">
+          <button className="delete" onClick={handleDelete}>Delete</button>
+        </div>
       </div>
     </div>
   );

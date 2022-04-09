@@ -17,7 +17,7 @@ export default function Header(){
             <li><Link to="/search"><SearchRoundedIcon />Search</Link></li>
             <li><Link to="/add"><AddCircleOutlineRoundedIcon />Add Movie</Link></li>
             <li><Link to="/userprofile"><PeopleRoundedIcon />Users</Link></li>
-            <li><Link to="/login"><LogoutRoundedIcon /></Link>Logout</li>
+            <li><Link to="/login"><LogoutRoundedIcon />Logout</Link></li>
             </ul>
             </nav>
 

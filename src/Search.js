@@ -1,3 +1,6 @@
+import "./style.css";
+import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
+import TextField from '@mui/material/TextField';
 import { useEffect, useState } from "react";
 import DisplayMovies from "./DisplayMovies";
 import Header from "./Header";
@@ -52,14 +55,11 @@ export default function Search() {
   return (
     <div className="search">
       <Header />
-      <input
-        type="text"
-        placeholder="Enter the Movie Name"
-        onChange={handleChange}
-        name="moviename"
-        value={input}
-      />
-      <button onClick={handleSearch}>Search</button>
+      <div className="search-txt">
+
+      <TextField sx={{width: '40ch'}} id="moviename" label="Search" type="search" onChange={handleChange} name="moviename" value={input}/>
+      <button className="search-btn" onClick={handleSearch}><SearchRoundedIcon />Search</button>
+      </div>
       <div className="home-displaymovies">{getMovies}</div>
     </div>
   );
