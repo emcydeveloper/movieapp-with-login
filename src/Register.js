@@ -1,43 +1,23 @@
 import "./style.css";
-import { useState } from "react";
+// import { useState } from "react";
 import SignUpHeader from "./SignUpHeader";
 import { useHistory } from "react-router-dom";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
+import { useForm } from "react-hook-form";
 
 export default function Register() {
+  const { register, handleSubmit, formState: { errors } } = useForm();
   const history = useHistory();
-  const [formData, setFormData] = useState({
-    firstname: "",
-    lastname: "",
-    username: "",
-    email: "",
-    mobile: "",
-    country: "",
-    city: "",
-    state: "",
-    comments: "",
-  });
 
-  function handleChange(event) {
-    const { name, value } = event.target;
-    // console.log(name, value);
-    setFormData((prevFormData) => {
-      return {
-        ...prevFormData,
-        [name]: value,
-      };
-    });
-  }
-
-  function handleSubmit(event) {
+  const onSubmit = (event) => {
+    console.log(event);
     fetch("https://movieapp-with-login.herokuapp.com/signup", {
       method: "POST", // or 'PUT'
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(event),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -49,9 +29,9 @@ export default function Register() {
         console.error("Error:", error);
         alert("Error");
       });
-
-    event.preventDefault();
+    // event.preventDefault();
   }
+
 
   return (
 
@@ -60,17 +40,34 @@ export default function Register() {
       <SignUpHeader />
       <div className="register-form" >
       
-      <Box component="form" sx={{'& .MuiTextField-root': { m: 1, width: '40ch',display: 'flex', flexWrap: 'wrap'  },}} noValidate autoComplete="off" onSubmit={handleSubmit}>
+      <Box component="form" sx={{'& .MuiTextField-root': { m: 1, width: '40ch',display: 'flex', flexWrap: 'wrap'  },}} noValidate autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
       <div>
-        <TextField fullWidth  required id="fullWidth" label="First Name" value={formData.firstname} name="firstname" onChange={handleChange} />
-        <TextField required id="fullWidth" label="Last Name" value={formData.lastname} name="lastname" onChange={handleChange} />
-        <TextField required id="username" label="Username" value={formData.username} name="username" onChange={handleChange} />
-        <TextField disabled id="password" label="Password" />
-        <TextField required id="email" label="e-Mail" value={formData.email} name="email" onChange={handleChange} />
-        <TextField id="mobile" label="Mobile number" type="number" InputLabelProps={{ shrink: true, }} value={formData.mobile} name="mobile" onChange={handleChange} />
-        <TextField required id="city" label="City" value={formData.city} name="city" onChange={handleChange} />
-        <TextField required id="state" label="State" value={formData.state} name="state" onChange={handleChange} />
-        <TextField id="comments" label="Comments" multiline rows={4} value={formData.comments} name="comments" onChange={handleChange}  />
+
+        <TextField id="firstname" placeholder="First Name *" name="firstname" {...register("firstName", {  required:true, minLength: 3 })}  />
+        {errors.firstName && <p>Required First Name with minimun 3 letters</p>}
+         {/* value={formData.firstname} name="firstname"  onChange={handleChange}*/}
+
+        <TextField id="lastname" placeholder="Last Name *" name="lastname" {...register("lastname", {  required:true, minLength: 3 })} />
+        {errors.lastname && <p>Required Last Name with minimun 3 letters</p>}
+
+        <TextField id="username" placeholder="Username *" name="username" {...register("username", {  required:true, minLength: 5 })} />
+        {errors.username && <p>Required Username with minimun 5 letters</p>}
+
+        <TextField disabled id="password" placeholder="Password" />
+
+        <TextField id="email" placeholder="e-Mail *" name="email" {...register("email", {  required:true, minLength: 10 })} />
+        {errors.email && <p>Please enter the valid email address</p>}
+
+        <TextField id="mobile" placeholder="Mobile number *" type="number" InputplaceholderProps={{ shrink: true, }} name="mobile" {...register("mobile", {  required:true, minLength:10, maxLength: 10 })} />
+        {errors.mobile && <p>Please enter the valid mobile number</p>}
+
+        <TextField id="city" placeholder="City *" name="city" {...register("city", {  required:true, minLength: 3 })} />
+        {errors.city && <p>Required City with minimun 3 letters</p>}
+
+        <TextField id="state" placeholder="State *" name="state" {...register("state", {  required:true, minLength: 3 })} />
+        {errors.state && <p>Required State with minimun 3 letters</p>}
+
+        <TextField id="comments" placeholder="Comments" multiline rows={4} name="comments" {...register("comments", {  required:false, minLength: 6 })}  />
       </div>
       
       <div className="btn-container">

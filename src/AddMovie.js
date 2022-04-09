@@ -1,3 +1,5 @@
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 import { useState } from "react";
 import Header from "./Header";
 import { useHistory } from "react-router-dom";
@@ -53,54 +55,21 @@ export default function AddMovie() {
       <Header />
       <h1>Add Movie</h1>
       <div className="addmovie-form">
-        <form onSubmit={handleSubmit}>
-          {/* <label htmlFor="firstname">First Name</label> */}
-          <input
-            type="text"
-            placeholder="Enter the Movie Name"
-            onChange={handleChange}
-            name="moviename"
-            value={formData.moviename}
-          />
-          {/* <label htmlFor="lastname">Last Name</label> */}
-          <input
-            type="text"
-            placeholder="Image URL"
-            onChange={handleChange}
-            name="img"
-            value={formData.img}
-          />
 
-          {/* <label htmlFor="username">User Name</label> */}
-          <input
-            type="text"
-            placeholder="Ratings"
-            onChange={handleChange}
-            name="rating"
-            value={formData.rating}
-          />
-
-          {/* <label htmlFor="email">Email</label> */}
-          <input
-            type="text"
-            placeholder="About Movies"
-            onChange={handleChange}
-            name="about"
-            value={formData.about}
-          />
-
-          {/* <label htmlFor="mobile">Mobile no.</label> */}
-          <input
-            type="url"
-            placeholder="Enter The Trailer URL"
-            onChange={handleChange}
-            name="trailer"
-            value={formData.trailer}
-          />
-          <div className="btn-container">
+      <Box component="form" sx={{'& .MuiTextField-root': { m: 1, width: '40ch',display: 'flex', flexWrap: 'wrap'  },}} noValidate autoComplete="off" onSubmit={handleSubmit}>
+      <div>
+        <TextField required id="moviename" label="Movie Name" value={formData.moviename} name="moviename" onChange={handleChange} />
+        <TextField required id="img" label="Image URL" value={formData.img} name="img" onChange={handleChange} />
+        <TextField required id="rating" label="Ratings" value={formData.rating} name="rating" onChange={handleChange} />
+        <TextField required id="about" label="About the movie" multiline rows={4} value={formData.about} name="about" onChange={handleChange}  />
+        <TextField id="trailer" label="Trailer Link" value={formData.trailer} name="trailer" onChange={handleChange} />
+      </div>
+      
+        <div className="btn-container">
           <button className="success">Save</button>
-          </div>
-        </form>
+        </div>
+    </Box>
+
       </div>
     </div>
   );
