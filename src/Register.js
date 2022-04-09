@@ -58,22 +58,23 @@ export default function Register() {
     <div className="register" >
       <SignUpHeader />
       <div className="register-form" >
-      <form onSubmit={handleSubmit}>
-      <Box component="form" sx={{'& .MuiTextField-root': { m: 1, width: '50ch',display: 'flex', flexWrap: 'wrap'  },}} noValidate autoComplete="off">
+      
+      <Box component="form" sx={{'& .MuiTextField-root': { m: 1, width: '40ch',display: 'flex', flexWrap: 'wrap'  },}} noValidate autoComplete="off" onSubmit={handleSubmit}>
       <div>
-        <TextField required id="firstname" label="First Name" value={formData.firstname} name="firstname" onChange={handleChange} />
-        <TextField required id="lastname" label="Last Name" value={formData.lastname} name="lastname" onChange={handleChange} />
+        <TextField required id="fullWidth" label="First Name" value={formData.firstname} name="firstname" onChange={handleChange} />
+        <TextField required id="fullWidth" label="Last Name" value={formData.lastname} name="lastname" onChange={handleChange} />
         <TextField required id="username" label="Username" value={formData.username} name="username" onChange={handleChange} />
         <TextField disabled id="password" label="Password" />
         <TextField required id="email" label="e-Mail" value={formData.email} name="email" onChange={handleChange} />
         <TextField id="mobile" label="Mobile number" type="number" InputLabelProps={{ shrink: true, }} value={formData.mobile} name="mobile" onChange={handleChange} />
         <TextField required id="city" label="City" value={formData.city} name="city" onChange={handleChange} />
         <TextField required id="state" label="State" value={formData.state} name="state" onChange={handleChange} />
-        <TextField  id="comments" label="Comments" multiline rows={4} value={formData.comments} name="comments" onChange={handleChange}  />
+        <TextField id="comments" label="Comments" multiline rows={4} value={formData.comments} name="comments" onChange={handleChange}  />
       </div>
+      <button>Submit</button>
     </Box>
-    <button>Submit</button>
-    </form>
+    
+    
     </div>
     </div>
   );

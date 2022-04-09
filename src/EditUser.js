@@ -77,9 +77,9 @@ export default function EditUser(){
     return(
         <div className="useredit">
             <Header />
-            <div className="register-form" >
-      <form onSubmit={handleSubmit}>
-      <Box component="form" sx={{'& .MuiTextField-root': { m: 1, width: '50ch',display: 'flex', flexWrap: 'wrap'  },}} noValidate autoComplete="off">
+            <div className="edituser-form" >
+      
+      <Box component="form" sx={{'& .MuiTextField-root': { m: 1, width: '40ch',display: 'flex', flexWrap: 'wrap'  },}} noValidate autoComplete="off" onSubmit={handleSubmit}>
       <div>
         <TextField required id="firstname" label="First Name" value={userData.firstname} name="firstname" onChange={handleChange} />
         <TextField required id="lastname" label="Last Name" value={userData.lastname} name="lastname" onChange={handleChange} />
@@ -89,12 +89,14 @@ export default function EditUser(){
         <TextField id="mobile" label="Mobile number" type="number" InputLabelProps={{ shrink: true, }} value={userData.mobile} name="mobile" onChange={handleChange} />
         <TextField required id="city" label="City" value={userData.city} name="city" onChange={handleChange} />
         <TextField required id="state" label="State" value={userData.state} name="state" onChange={handleChange} />
-        <TextField  id="comments" label="Comments" multiline rows={4} value={userData.comments} name="comments" onChange={handleChange}  />
+        <TextField id="comments" label="Comments" multiline rows={4} value={userData.comments} name="comments" onChange={handleChange}  />
       </div>
+      <button>Submit</button>
+      <button className="useredit-delbtn" onClick={handleDelete}>Delete</button>
     </Box>
-    <button>Submit</button>
-    </form>
-    <button className="useredit-delbtn" onClick={handleDelete}>Delete</button>
+    
+    
+    
     </div>
       </div>
         

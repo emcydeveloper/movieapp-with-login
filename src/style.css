@@ -1,4 +1,8 @@
-.register-form {
+.register{
+  width: 100%;
+}
+.register-form,.edituser-form {
+  width: 80%;
   margin-left: auto;
   margin-right: auto;
   margin-top: 60px;
@@ -32,7 +36,7 @@
 
 .register-form > form > div > input {
   margin: 20px;
-} */
+} 
 .form-textarea {
   padding: 0px;
   margin: 0px;
@@ -48,7 +52,7 @@
   width: 20%;
   margin-left: auto;
   margin-right: auto;
-}
+}*/
 
 .signupheader {
   background-color: aqua;
@@ -77,7 +81,8 @@
 .header-nav > ul > li {
   list-style: none;
   display: inline-block;
-  margin: 10px;
+  margin: 5px;
+  font-size: 10px;;
 }
 
 .home-displaymovies {

@@ -4,6 +4,8 @@ import IconButton from "@mui/material/IconButton";
 import Counter from "./Counter";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
@@ -37,10 +39,10 @@ export default function DisplayMovies({ getmovieinfo }) {
                   {visible ? <ExpandLessIcon /> : <ExpandMoreIcon />}
                 </IconButton>
                 <IconButton onClick={() => history.push("/edit/" + id)}>
-                  Edit
+                <EditIcon />
                 </IconButton>
                 <IconButton onClick={() => history.push("/edit/" + id)}>
-                  Delete
+                <DeleteIcon />
                 </IconButton>
               </div>
             </h2>

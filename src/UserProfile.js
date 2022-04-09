@@ -1,4 +1,6 @@
 import { IconButton } from "@mui/material";
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Header from "./Header";
@@ -24,12 +26,12 @@ export default function UserProfile() {
         <td>{user.username}</td> <td>{user.email}</td>
         <td>
           <IconButton onClick={() => history.push("useredit/" + user.id)}>
-            Edit
+          <EditIcon />
           </IconButton>
         </td>
         <td>
           <IconButton onClick={() => history.push("useredit/" + user.id)}>
-            Delete
+          <DeleteIcon />
           </IconButton>
         </td>
       </tr>
