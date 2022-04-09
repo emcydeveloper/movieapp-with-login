@@ -57,6 +57,7 @@ export default function Register() {
 
         <TextField id="email" placeholder="e-Mail *" name="email" {...register("email", 
                         { required: true,  
+                            // eslint-disable-next-line no-useless-escape
                             pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ 
                         })} />                        
         {errors.email && <p>Please enter the valid email address</p>}
